@@ -1,0 +1,116 @@
+version: "3.10"
+services:
+  db:
+    build:
+      context: ./sql
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    container_name: db
+    env_file:
+      - ".env"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+  main-service:
+    build:
+      context: ./main
+      dockerfile: Dockerfile
+    container_name: main_service
+    env_file:
+      - ".env"
+    environment:
+      - PREDICT_SERVICE_HOST=${PREDICT_SERVICE_HOST}
+      - PREDICT_SERVICE_PORT=${PREDICT_SERVICE_PORT}
+      - AUTH_SERVICE_HOST=${AUTH_SERVICE_HOST}
+      - AUTH_SERVICE_PORT=${AUTH_SERVICE_PORT}
+      - ML_SERVICE_HOST=${ML_SERVICE_HOST}
+      - ML_SERVICE_PORT=${ML_SERVICE_PORT}
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    volumes:
+      - ./main:/app
+    links:
+      - db
+  auth-service:
+    build:
+      args:
+        - USER_ID=1000
+        - GROUP_ID=1000
+        - USERNAME=islam
+      context: ./auth
+      dockerfile: Dockerfile
+    container_name: auth_service
+    env_file:
+      - ".env"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+    volumes:
+      - ./auth:/app
+    links:
+      - db
+  predict-service:
+    build:
+      args:
+        - USER_ID=1000
+        - GROUP_ID=1000
+        - USERNAME=islam
+      context: ./predict
+      dockerfile: Dockerfile
+    container_name: predict_service
+    env_file:
+      - ".env"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+    ports:
+      - "7000:7000"
+    depends_on:
+      - db
+    volumes:
+      - ./predict:/app
+    links:
+      - db
+  ml-service:
+    build:
+      args:
+        - USER_ID=1000
+        - GROUP_ID=1000
+        - USERNAME=islam
+      context: ./ml_model
+      dockerfile: Dockerfile
+    container_name: ml_service
+    env_file:
+      - ".env"
+    environment:
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./ml_model:/app
+volumes:
+  db-volume:
+    driver: local
