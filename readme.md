@@ -1,6 +1,6 @@
 # Microsevice-app
 
-## A simple NLP intent recognition microservice app built using gRPC, Python, and Go.
+## A simple NLP intent recognition microservice web-application built using gRPC, Python, and Go.
 
 **How to run this repository locally**
 - Run all of the services via docker-compose file.
