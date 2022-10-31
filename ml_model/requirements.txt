@@ -1,0 +1,11 @@
+nltk
+torch
+pymystem3
+transformers
+sentencepiece
+sklearn
+pandas
+grpcio
+google
+protobuf
+dynaconf

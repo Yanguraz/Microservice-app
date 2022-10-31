@@ -1,0 +1,21 @@
+{% import 'forms.html' as forms %}
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block sentence %}Detail Predict{% endblock sentence %}
+{% block content_sentence %}Detail Predict{% endblock content_sentence %}
+{% block content %}
+<div>
+  <form action="{{ url_for('predict_blueprint.update_predict', predict_id=predict.id) }}" method="POST">
+    {{ macros.input('sentence', 'sentence-', 'Sentence:', value=predict.sentence) }}
+    
+    {{ macros.button('Submit') }}
+  </form>
+  <div class="detail-bottom">
+    <a href="{{ url_for('predict_blueprint.get_predicts') }}" class="goback-btn">Go back</a>
+    <a href="{{ url_for('predict_blueprint.delete_predict', predict_id=predict.id) }}" class="delete-btn">Delete</a>
+  </div>
+  {% if error %}
+    <p class="form-error">{{ error }}</p>
+  {% endif %}
+</div>
+{% endblock content %}

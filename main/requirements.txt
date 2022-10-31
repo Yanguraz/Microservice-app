@@ -1,0 +1,10 @@
+click
+Flask
+grpcio
+itsdangerous
+Jinja2
+MarkupSafe
+six
+Werkzeug
+google
+protobuf

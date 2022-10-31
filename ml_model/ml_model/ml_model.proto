@@ -1,0 +1,13 @@
+syntax = "proto3";
+package ml_model;
+//option go_package = "/predict";
+
+message MakePredictRequest {
+    string sentence = 1;
+}
+message MakePredictResponse {
+    string intent = 1;
+}
+service Ml_Service {
+    rpc MakePredict(MakePredictRequest) returns (MakePredictResponse) {}
+}

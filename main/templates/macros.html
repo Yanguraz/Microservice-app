@@ -1,0 +1,19 @@
+{% macro input(name, id, label, value='', type='text') -%}
+  <div class="input">
+    <label for="{{ id }}">{{ label }}</label>
+    <input type="{{ type }}" value="{{ value|e }}" name="{{ name }}">
+  </div>
+{%- endmacro %}
+
+{% macro button(sentence) -%}
+  <button class="form-btn">{{ sentence }}</button>
+{%- endmacro %}
+
+{% macro predict_item(href, sentence, intent) -%}
+  <a href="{{ href }}" class="item-predict">
+    <div>
+      <h3>{{ sentence }}</h3>
+      <p>{{ intent }}</p>
+    </div>
+  </a>
+{%- endmacro %}

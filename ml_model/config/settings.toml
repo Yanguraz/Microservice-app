@@ -1,0 +1,10 @@
+rel_path = "data"  # Relative path to the workdir
+encoding = "utf-8" 
+prs_language = "russian" # Processing language
+
+rubert = "cointegrated/rubert-tiny" # Russian BERT-based encoder 
+
+r_action = "response" # Dataset X
+p_action = "pattern" # Dataset reponse to Y
+
+y_variable = "content" # Target variable in ML model

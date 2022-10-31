@@ -1,0 +1,15 @@
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block sentence %}Predicts List{% endblock sentence %}
+{% block content_sentence %}Predicts List{% endblock content_sentence %}
+{% block content %}
+<div class="predict-list">
+  {% if predicts %}
+    {% for predict in predicts -%}
+      {{  macros.predict_item(url_for('predict_blueprint.get_predict', predict_id=predict.id), predict.sentence, predict.intent)}}
+    {%- endfor %}
+  {% else %}
+    <p>No predicts</p>
+  {% endif %}
+</div>
+{% endblock content %}

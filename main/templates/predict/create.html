@@ -1,0 +1,17 @@
+{% import 'forms.html' as forms %}
+{% import 'macros.html' as macros %}
+{% extends "layout.html" %}
+{% block sentence %}Create Predict{% endblock sentence %}
+{% block content_sentence %}Create Predict{% endblock content_sentence %}
+{% block content %}
+<div>
+  <form action="{{ action }}" method="POST">
+    {{ macros.input('sentence', 'sentence', 'Sentence:') }}
+    {{ macros.button('Submit') }}
+  </form>
+  <p style="text-align: center;">{{ output }}</p>
+  {% if error %}
+    <p class="form-error">{{ error }}</p>
+  {% endif %}
+</div>
+{% endblock content %}
