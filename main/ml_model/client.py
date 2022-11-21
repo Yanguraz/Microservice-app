@@ -7,7 +7,6 @@ class PredictClient_ml:
     def __init__(self):
         self.host = os.environ.get("ML_SERVICE_HOST", "localhost")
         self.server_port = int(os.environ.get("ML_SERVICE_PORT", "8080"))
-
         self.channel = grpc.insecure_channel(f'{self.host}:{self.server_port}', options=(('grpc.enable_http_proxy', 0),))
         self.stub = pb2_grpc.Ml_ServiceStub(self.channel)
 
