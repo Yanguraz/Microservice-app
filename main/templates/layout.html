@@ -16,9 +16,12 @@
     <nav>
       <ul>
         {% if session['token'] %}
+        <li>
           <li><a href="{{ url_for('predict_blueprint.get_predicts') }}">Predicts</a></li>
           <li><a href="{{ url_for('predict_blueprint.create_predict') }}">Create</a></li>
           <li><a href="{{ url_for('auth_blueprint.logout') }}">Logout</a></li>
+          <li><a href="{{ url_for('chat_blueprint.home') }}">Chat</a></li>
+        <li>
         {% else %}
           <li><a href="{{ url_for('auth_blueprint.login') }}">Login</a></li>
           <li><a href="{{ url_for('auth_blueprint.register') }}">Register</a></li>
