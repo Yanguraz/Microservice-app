@@ -1,10 +1,11 @@
 click
 Flask
 grpcio
+grpcio-tools
+Protobuf
 itsdangerous
 Jinja2
 MarkupSafe
 six
 Werkzeug
 google
-protobuf
