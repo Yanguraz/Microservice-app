@@ -5,6 +5,7 @@ import glob
 import os
 from torch.utils.data import Dataset
 from pathlib import Path
+import random
 
 ###
 import logging
@@ -41,6 +42,7 @@ from transformers import AutoTokenizer, AutoModel
 absolute_path = os.path.dirname(__file__)
 relative_path = settings.rel_path
 full_path = os.path.join(absolute_path, relative_path)
+print(full_path)
 
 class IntentsDataset(Dataset):
 
@@ -160,4 +162,15 @@ class PredictSentence:
         logger.info(f'Input: {sentence} Output: {pred}') 
         return pred
 
+    def return_response(self, sentence, action = settings.r_action, data = full_path):
+        intent = self.predict_model(sentence)
+        dir_pr = f'{data}/data/{intent}/**/{action}*.txt'
+        dir_str = glob.glob(dir_pr, recursive=True)
+        txt_th = []
+        for filepath in dir_str:
+            txt_th.append(filepath)
+        open_txt = open(txt_th[random.randint(0, (len(txt_th))-1)], 'r', encoding=settings.encoding)
+        txt = open_txt.read()
+        logger.info(f'{sentence} predicted to be {intent}. Given response {txt}')
+        return txt
 
