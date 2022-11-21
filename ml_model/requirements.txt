@@ -3,9 +3,10 @@ torch
 pymystem3
 transformers
 sentencepiece
-sklearn
+scikit-learn
 pandas
+grpcio-tools
 grpcio
+Protobuf
 google
-protobuf
 dynaconf
