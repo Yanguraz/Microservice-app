@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17ml_model/ml_model.proto\x12\x08ml_model\"&\n\x12MakePredictRequest\x12\x10\n\x08sentence\x18\x01 \x01(\t\"%\n\x13MakePredictResponse\x12\x0e\n\x06intent\x18\x01 \x01(\t2Z\n\nMl_Service\x12L\n\x0bMakePredict\x12\x1c.ml_model.MakePredictRequest\x1a\x1d.ml_model.MakePredictResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17ml_model/ml_model.proto\x12\x08ml_model\"&\n\x12MakePredictRequest\x12\x10\n\x08sentence\x18\x01 \x01(\t\"#\n\x0fMakeChatRequest\x12\x10\n\x08sentence\x18\x01 \x01(\t\"%\n\x13MakePredictResponse\x12\x0e\n\x06intent\x18\x01 \x01(\t\"$\n\x10MakeChatResponse\x12\x10\n\x08response\x18\x01 \x01(\t2\xa3\x01\n\nMl_Service\x12L\n\x0bMakePredict\x12\x1c.ml_model.MakePredictRequest\x1a\x1d.ml_model.MakePredictResponse\"\x00\x12G\n\x0cMakeResponse\x12\x19.ml_model.MakeChatRequest\x1a\x1a.ml_model.MakeChatResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ml_model.ml_model_pb2', globals())
@@ -22,8 +22,12 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _MAKEPREDICTREQUEST._serialized_start=37
   _MAKEPREDICTREQUEST._serialized_end=75
-  _MAKEPREDICTRESPONSE._serialized_start=77
-  _MAKEPREDICTRESPONSE._serialized_end=114
-  _ML_SERVICE._serialized_start=116
-  _ML_SERVICE._serialized_end=206
+  _MAKECHATREQUEST._serialized_start=77
+  _MAKECHATREQUEST._serialized_end=112
+  _MAKEPREDICTRESPONSE._serialized_start=114
+  _MAKEPREDICTRESPONSE._serialized_end=151
+  _MAKECHATRESPONSE._serialized_start=153
+  _MAKECHATRESPONSE._serialized_end=189
+  _ML_SERVICE._serialized_start=192
+  _ML_SERVICE._serialized_end=355
 # @@protoc_insertion_point(module_scope)
